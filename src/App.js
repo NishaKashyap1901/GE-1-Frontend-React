@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import AllProjects from './Components/AllProjects';
+import AdminLogin from './Components/AdminLogin';
+import AllTickets from './Components/AllTickets';
+import Navbar from './Components/Navbar';
+import UserLogin from './Components/UserLogin'
+import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
+import AllWorklogs from './Components/AllWorklogs';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route index element={< UserLogin/>} />
+        <Route path="navbar" element={<Navbar />}/>
+        <Route path="allProjects" element={<AllProjects />} />
+        <Route path="/allTickets/:projectId" element={<AllTickets/>} />
+        <Route path="login" element={<AdminLogin />} />
+        <Route path="/by-ticket/:ticketId" element={<AllWorklogs/>}/>
+      </Routes>
   );
 }
 
