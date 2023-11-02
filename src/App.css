@@ -39,4 +39,67 @@
   to {
     transform: rotate(360deg);
   }
+}.CalendarPage {
+  display: flex;
 }
+.Sidebar {
+  flex: 0.4; /* Adjust the value to control the width of the sidebar */
+  padding: 10px;
+  background-image: linear-gradient(to bottom right,#13186A,#0037A2,#8885FE)!important;  color: #fff;
+}
+.Calendar {
+  flex: 2; /* Adjust the value to control the width of the calendar */
+}
+.calendar-container {
+  background-color: #FFFFFF;
+  border: 1px solid #3E20C5;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.userButton{
+  background-color: #314499;
+  color: 'white';
+  padding: '12px 20px';
+  borderRadius: '5px';
+  border: 'none';
+  cursor: 'pointer';
+  fontSize: '16px';
+}
+.user-card {
+  background-color: #5cbcda;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 0 auto;
+  margin-top: '10px';
+}
+
+.user-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.close-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.user-details {
+  font-size: 16px;
+}
+
+/* Additional styling can be applied as needed */

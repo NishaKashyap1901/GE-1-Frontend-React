@@ -2,10 +2,39 @@ import { createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
 const initialState = {
   tickets: [],
+  userTickets: [],
   status: false,
   error: null,
 };
 
+export const getTicketsOfUser = (id) => {
+  console.log("user Id",id)
+  return async (dispatch) => {
+    dispatch(fetchUserTicketPending());
+    try {
+      const response = await axios.get(`http://localhost:8080/tickets/user/${id}`);
+      console.log("user Ticket.............",response.data);
+      dispatch(fetchUserTicketFulfilled(response.data));
+    } catch (error) {
+      console.log("Error fetching Ticket of User:", error);
+      dispatch(fetchUserTicketRejected(error.message));
+    }
+  };
+};
+
+export const fetchTickets = () => {
+  return async (dispatch) => {
+    dispatch(fetchTicketsPending());
+    try {
+      const response = await axios.get('http://localhost:8080/tickets');
+      console.log(response.data);
+      dispatch(fetchTicketsFulfilled(response.data));
+    } catch (error) {
+      console.error("Error fetching projects:", error);
+      dispatch(fetchTicketsRejected(error.message));
+    }
+  };
+};
 
 export const addTicket = (newTicketData) => {
   return async (dispatch) => {
@@ -26,11 +55,11 @@ export const addTicket = (newTicketData) => {
 // Fetch tickets by project ID
 export const fetchTicketsByProject = (projectId) => {
   return async (dispatch) => {
-    // console.log("Inside Slice API");
+    // console.log(".................");
     dispatch(fetchTicketsPending());
     try {
       const response = await axios.get(`http://localhost:8080/projects/${projectId}/ticket`);
-      console.log("Inside ticket Slice  try.....",response.data);
+      // console.log("Inside ticket Slice  try.....",response.data);
       dispatch(fetchTicketsFulfilled(response.data.tickets));
     } catch (error) {
       // console.error("Error fetching tickets:", error);
@@ -43,6 +72,11 @@ const ticketsSlice = createSlice({
     name: 'tickets',
     initialState,
     reducers: {
+
+      setTickets: (state, action) => {
+        state.userTickets = action.payload;
+      },
+
         fetchTicketsPending: (state) => {
         state.status = true;
       },
@@ -66,6 +100,18 @@ const ticketsSlice = createSlice({
         state.status = false;
         state.error = action.payload;
       },
+      fetchUserTicketPending: (state) => {
+        state.status = 'loading';
+      },
+      fetchUserTicketFulfilled: (state, action) => {
+        // console.log(state);
+        state.status = 'succeeded';
+        state.tickets = action.payload;
+      },
+      fetchUserTicketRejected: (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      },
     },
 });
 export const {
@@ -74,6 +120,6 @@ export const {
     fetchTicketsRejected,
     addTicketPending,
   addTicketFulfilled,
-  addTicketRejected
+  addTicketRejected,fetchUserTicketFulfilled,fetchUserTicketPending,fetchUserTicketRejected
 } = ticketsSlice.actions;
 export default ticketsSlice.reducer;

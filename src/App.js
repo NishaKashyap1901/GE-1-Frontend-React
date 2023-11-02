@@ -8,6 +8,10 @@ import Navbar from './Components/Navbar';
 import UserLogin from './Components/UserLogin'
 import '/node_modules/bootstrap/dist/css/bootstrap.min.css'
 import AllWorklogs from './Components/AllWorklogs';
+import WorklogForm from './Components/WorklogForm';
+import CalendarPage from './Components/CalenderPage';
+import UserCard from './Components/UserCard';
+import './App.css';
 
 function App() {
   return (
@@ -18,6 +22,9 @@ function App() {
         <Route path="/allTickets/:projectId" element={<AllTickets/>} />
         <Route path="login" element={<AdminLogin />} />
         <Route path="/by-ticket/:ticketId" element={<AllWorklogs/>}/>
+        <Route path="/ticket/:ticketId" element={<WorklogForm/>}/>
+        <Route path='/calender' element={<CalendarPage/>}/>
+
       </Routes>
   );
 }

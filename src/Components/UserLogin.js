@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const headerStyle = {
-    backgroundColor: '#34db48',
-    color: 'white',
-    padding: '16px',
-    textAlign: 'center',
-    fontSize: '24px',
-    fontFamily: 'Arial, sans-serif', // You can change the font family
-    fontWeight: 'bold', // You can make the text bold
-    textShadow: '2px 2px 4px #000000', 
-    background: 'linear-gradient(45deg, #3498db, #db4934)',
-  };
+  backgroundColor: '#34db48', /* Background color */
+  color: 'white', /* Text color */
+  padding: '20px', /* Padding */
+  textAlign: 'center',
+  fontSize: '24px', /* Font size */
+  fontFamily: 'Arial, sans-serif', /* Font family */
+  textShadow: '2px 2px 4px #333', /* Text shadow */
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', /* Box shadow */
+  background: 'linear-gradient(45deg,  #000080,#3498db  )',
+};
   
   const secondaryButton1 = {
     backgroundColor: '#34495e',

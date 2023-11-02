@@ -49,12 +49,16 @@ export const {
 export default worklogSlice.reducer;
 
 // Action to add a worklog to the backend
-export const addWorklogToBackend = (worklogData) => {
+export const addWorklogToBackend = (ticketId, worklogData) => {
+  console.log("url",ticketId)
+  console.log(worklogData)
+  console.log("add")
   return async (dispatch) => {
     dispatch(addWorklogPending());
     try {
-      const response = await axios.post('http://localhost:8080/worklogs', worklogData); // Replace with your API endpoint
-      dispatch(addWorklogFulfilled(response.data)); // Update the state with the added worklog
+      console.log("add1")
+      const response = await axios.post(`http://localhost:8080/worklogs/${ticketId}`, worklogData);
+      dispatch(addWorklogFulfilled(response.data));
     } catch (error) {
       dispatch(addWorklogRejected(error.message));
     }
@@ -63,6 +67,7 @@ export const addWorklogToBackend = (worklogData) => {
 
 
 export const fetchWorklogs = (ticketId) => {
+
   return async (dispatch) => {
     dispatch(fetchWorklogsStart());
     try {
